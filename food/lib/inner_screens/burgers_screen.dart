@@ -63,7 +63,7 @@ class _BurgerScreenState extends State<BurgerScreen> {
                           cartItems.returnPrice(data[i]["price"]);
                           cartItems.returnImg(data[i]["imageurl"]);
                         },
-                        child: Text("Add to cart")),
+                        child: Text("Add to the cart")),
                     Text(data[i]["price"].toString()),
                   ],
                 ),
