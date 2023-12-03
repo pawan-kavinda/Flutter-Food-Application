@@ -6,6 +6,7 @@ import 'package:food/inner_screens/cartitems.dart';
 import 'package:food/inner_screens/feeds_screen.dart';
 import 'package:food/inner_screens/on_sale_screen.dart';
 import 'package:food/provider/dark_theme_provider.dart';
+import 'package:food/screens/admin_btm_bar.dart';
 import 'package:food/screens/btm_bar.dart';
 import 'package:food/screens/categories.dart';
 import 'package:food/screens/home_screen.dart';

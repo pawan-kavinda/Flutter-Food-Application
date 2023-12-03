@@ -22,6 +22,7 @@ class AuthenticationServices {
         'address': address,
         'email': email,
         'password': password,
+        'role': 'customer'
       });
 
       User? user = result.user;

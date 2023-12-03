@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food/inner_screens/burgers_screen.dart';
+import 'package:food/screens/admin_btm_bar.dart';
 import 'package:food/screens/btm_bar.dart';
 import 'package:food/screens/user_registration.dart';
 import 'package:food/services/authentication/authentication_services.dart';
@@ -55,7 +57,7 @@ class _AddFoodState extends State<Login> {
               TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
-                  hintText: 'User Name',
+                  hintText: 'Email Address',
                 ),
               ),
               TextField(
@@ -92,16 +94,53 @@ class _AddFoodState extends State<Login> {
     );
   }
 
+  // void login() async {
+  //   User? authResult = await _auth.userLogin(
+  //       _usernameController.text, _passwordController.text);
+
+  //   if (authResult != null) {
+  //     print("logged in");
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const BottomBarScreen()),
+  //     );
+  //   } else {
+  //     print("login error");
+  //   }
+  // }
   void login() async {
     User? authResult = await _auth.userLogin(
         _usernameController.text, _passwordController.text);
 
     if (authResult != null) {
-      print("logged in");
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomBarScreen()),
-      );
+      DocumentSnapshot<Map<String, dynamic>> userSnapshot =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(authResult.uid)
+              .get();
+
+      if (userSnapshot.exists) {
+        String role = userSnapshot.get('role');
+
+        if (role == 'admin') {
+          print("logged in as admin");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const AdminBottomBarScreen()),
+          );
+        } else if (role == 'customer') {
+          print("logged in as customer");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const BottomBarScreen()),
+          );
+        } else {
+          print("unknown role");
+        }
+      } else {
+        print("user data not found");
+      }
     } else {
       print("login error");
     }
