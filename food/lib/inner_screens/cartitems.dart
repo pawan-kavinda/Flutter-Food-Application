@@ -1,5 +1,3 @@
-import 'package:food/inner_screens/burgers_screen.dart';
-
 class cartitems {
   static final cartitems _instance = cartitems._internal();
 

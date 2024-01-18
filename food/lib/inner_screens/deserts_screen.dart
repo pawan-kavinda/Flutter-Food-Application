@@ -17,7 +17,7 @@ class _DesertsScreenState extends State<DesertsScreen> {
   getData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("foods")
-        .where("category", isEqualTo: "desert")
+        .where("category", isEqualTo: "desert  ")
         .get();
     data.addAll(querySnapshot.docs);
     setState(() {});
@@ -50,7 +50,10 @@ class _DesertsScreenState extends State<DesertsScreen> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    Image.asset('assets/images/${data[i]["imgname"]}.png'),
+                    Image.network(
+                      data[i]['imageurl'],
+                      height: 100,
+                    ),
                     TextButton(
                         onPressed: () {
                           cartItems.returntitle(data[i]["foodname"]);

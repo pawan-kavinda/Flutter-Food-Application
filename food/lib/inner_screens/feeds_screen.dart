@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:food/services/widgets/all.dart';
 import 'package:food/services/widgets/feed_items.dart';
 
 class FeedScreen extends StatefulWidget {
@@ -44,54 +45,13 @@ class _FeedScreenState extends State<FeedScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: kBottomNavigationBarHeight,
-                child: TextField(
-                  focusNode: _searchTextFocusNode,
-                  controller: _searchTextController,
-                  onChanged: (value) {
-                    setState(() {});
-                  },
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 1,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 1,
-                      ),
-                    ),
-                    hintText: "What's in your mind",
-                    prefixIcon: Icon(Icons.search),
-                    suffix: IconButton(
-                      icon: Icon(
-                        Icons.close,
-                        color: _searchTextFocusNode.hasFocus
-                            ? Colors.red
-                            : Colors.blue,
-                      ),
-                      onPressed: () {
-                        _searchTextController!.clear();
-                        _searchTextFocusNode.unfocus();
-                      },
-                    ),
-                  ),
-                ),
-              ),
               GridView.count(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 crossAxisCount: 1,
                 childAspectRatio: 250 / 300,
                 children: List.generate(1, (index) {
-                  //return FeedsWidget();
-                  return FeedsWidget();
+                  return All();
                 }),
               )
             ],

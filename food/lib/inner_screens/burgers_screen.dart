@@ -2,7 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:food/screens/cart.dart';
+
 import 'cartitems.dart';
 
 class BurgerScreen extends StatefulWidget {
@@ -14,11 +14,9 @@ class BurgerScreen extends StatefulWidget {
 
 class _BurgerScreenState extends State<BurgerScreen> {
   List<QueryDocumentSnapshot<Object?>> data = [];
-  //cartitems cartItems = cartitems();
+  
   cartitems cartItems = cartitems();
-  // List<String> cartItemTitle = [];
-  // List<int> cartItemPrice = [];
-  // List<String> cartItemImg = [];
+  
 
   getData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -56,7 +54,10 @@ class _BurgerScreenState extends State<BurgerScreen> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    Image.asset('assets/images/${data[i]["imgname"]}.png'),
+                    Image.network(
+                      data[i]['imageurl'],
+                      height: 100,
+                    ),
                     TextButton(
                         onPressed: () {
                           cartItems.returntitle(data[i]["foodname"]);

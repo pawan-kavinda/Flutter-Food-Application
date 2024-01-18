@@ -51,7 +51,10 @@ class _SaladsScreenState extends State<SaladsScreen> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    Image.asset('assets/images/${data[i]["imgname"]}.png'),
+                    Image.network(
+                      data[i]['imageurl'],
+                      height: 100,
+                    ),
                     TextButton(
                         onPressed: () {
                           cartItems.returntitle(data[i]["foodname"]);

@@ -4,21 +4,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food/inner_screens/cartitems.dart';
 
-class KottuScreen extends StatefulWidget {
-  const KottuScreen({super.key});
+class RiceScreen extends StatefulWidget {
+  const RiceScreen({super.key});
 
   @override
-  State<KottuScreen> createState() => _KottuScreenState();
+  State<RiceScreen> createState() => _RiceScreenState();
 }
 
-class _KottuScreenState extends State<KottuScreen> {
-  cartitems cartItems = cartitems();
+class _RiceScreenState extends State<RiceScreen> {
   List<QueryDocumentSnapshot<Object?>> data = [];
+  cartitems cartItems = cartitems();
 
   getData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("foods")
-        .where("category", isEqualTo: "kottu")
+        .where("category", isEqualTo: "rice")
         .get();
     data.addAll(querySnapshot.docs);
     setState(() {});
@@ -34,12 +34,12 @@ class _KottuScreenState extends State<KottuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Kottu"),
+        title: Text("Rice"),
       ),
       body: GridView.builder(
           itemCount: data.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 295 / 360),
+              crossAxisCount: 2, childAspectRatio: 300 / 360),
           itemBuilder: (context, i) {
             return Card(
               child: Container(
@@ -61,8 +61,7 @@ class _KottuScreenState extends State<KottuScreen> {
                           cartItems.returnPrice(data[i]["price"]);
                           cartItems.returnImg(data[i]["imageurl"]);
                         },
-                        child: Text("Add to cart")),
-                    Text(data[i]["price"].toString()),
+                        child: Text("Add to cart"))
                   ],
                 ),
               ),

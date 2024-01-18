@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:food/inner_screens/beverages_screen.dart';
 import 'package:food/inner_screens/burgers_screen.dart';
 import 'package:food/inner_screens/deserts_screen.dart';
 import 'package:food/inner_screens/kottu_screen.dart';
+import 'package:food/inner_screens/rice_screen.dart';
 import 'package:food/inner_screens/salads_screen.dart';
-import 'package:food/services/widgets/categories_widget.dart';
+import 'package:food/inner_screens/soup_screen.dart';
 
 class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({super.key});
-  List<Map<String, dynamic>> catinfo = [
+  final List<Map<String, dynamic>> catinfo = [
     {
       'imgPath': 'assets/images/burger.png',
       'catText': 'Burgers',
@@ -25,6 +27,7 @@ class CategoriesScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Scaffold(
             appBar: AppBar(
+              leading: null,
               elevation: 5,
               backgroundColor: Colors.black,
               title: Text(
@@ -32,19 +35,6 @@ class CategoriesScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 24, color: Colors.green),
               ),
             ),
-            // body: GridView.count(
-            //     crossAxisCount: 2,
-            //     childAspectRatio: 300 / 250,
-            //     crossAxisSpacing: 30,
-            //     mainAxisSpacing: 30,
-            //     children: List.generate(6, (index) {
-            //       return CategoriesWidget(
-            //         catText: catinfo[index]['catText'],
-            //         imgPath: catinfo[index]['imgPath'],
-            //         color: Colors.amber,
-            //       );
-            //     }
-            //     ))),
             body: GridView.count(
               primary: false,
               padding: const EdgeInsets.all(20),
@@ -110,6 +100,51 @@ class CategoriesScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const DesertsScreen()),
+                    );
+                  },
+                ),
+                InkWell(
+                  child: Column(
+                    children: [
+                      const Text("Rice"),
+                      Image.asset('assets/images/rice.png')
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RiceScreen()),
+                    );
+                  },
+                ),
+                InkWell(
+                  child: Column(
+                    children: [
+                      const Text("Beverages"),
+                      Image.asset('assets/images/beverages.png')
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const BeveragesScreen()),
+                    );
+                  },
+                ),
+                InkWell(
+                  child: Column(
+                    children: [
+                      const Text("Soup"),
+                      Image.asset('assets/images/soup.png')
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SoupScreen()),
                     );
                   },
                 ),

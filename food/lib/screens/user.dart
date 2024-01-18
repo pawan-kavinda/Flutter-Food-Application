@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -8,7 +7,6 @@ import 'package:food/screens/favouritescreen.dart';
 import 'package:food/screens/login.dart';
 import 'package:food/services/authentication/authentication_services.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class UserScreen extends StatefulWidget {
   const UserScreen({super.key});
@@ -146,10 +144,7 @@ class _UserScreenState extends State<UserScreen> {
           return AlertDialog(
             title: Text("Update"),
             content: TextField(
-              onChanged: (value) {
-                //print(_addressTextController.text);
-              },
-              //for take the user input value for edit address
+              onChanged: (value) {},
               controller: _addressTextController,
               maxLines: 5,
               decoration: InputDecoration(hintText: "Enter your address"),
@@ -166,15 +161,6 @@ class _UserScreenState extends State<UserScreen> {
           return AlertDialog(
             title: Row(
               children: const [
-                /*Image.asset(
-                  'images/a_dot_ham.jpeg',
-                  height: 20,
-                  width: 20,
-                  fit: BoxFit.fill,
-                ),
-                SizedBox(
-                  width: 10,
-                ),*/
                 Text("Log Out"),
               ],
             ),

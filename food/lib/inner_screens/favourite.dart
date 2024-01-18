@@ -1,5 +1,3 @@
-import 'package:food/inner_screens/burgers_screen.dart';
-
 class favourite {
   static final favourite _instance = favourite._internal();
 

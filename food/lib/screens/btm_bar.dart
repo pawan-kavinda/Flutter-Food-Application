@@ -22,7 +22,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     CategoriesScreen(),
     const UserScreen(),
     const CartScreen(),
-    const AddFood(),
   ];
   void _selectedPage(int index) {
     setState(() {
@@ -61,12 +60,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 label: "User"),
             BottomNavigationBarItem(
                 icon: Icon(
-                    _selectedIndex == 4 ? IconlyBold.chart : IconlyLight.chart),
-                label: "Add"),
-            BottomNavigationBarItem(
-                icon: Icon(
-                    _selectedIndex == 3 ? IconlyBold.plus : IconlyLight.plus),
-                label: "Add"),
+                    _selectedIndex == 3 ? IconlyBold.bag : IconlyLight.bag),
+                label: "Cart"),
           ]),
     );
   }

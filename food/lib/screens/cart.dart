@@ -1,7 +1,6 @@
 //import 'dart:js_util';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:food/inner_screens/burgers_screen.dart';
+
 import 'package:food/inner_screens/cartitems.dart';
 
 class CartScreen extends StatefulWidget {
@@ -31,6 +30,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: null,
         title: Center(child: Text("cart")),
         backgroundColor: Colors.green,
       ),
@@ -63,11 +63,6 @@ class _CartScreenState extends State<CartScreen> {
                                 color: Color.fromARGB(255, 1, 27, 7),
                                 fontSize: 20),
                           ),
-                          // Image.asset(
-                          //   'assets/images/${image[index]}.png',
-                          //   width: 80,
-                          //   height: 80,
-                          // ),
                           Image.network(
                             image[index],
                             width: 80,

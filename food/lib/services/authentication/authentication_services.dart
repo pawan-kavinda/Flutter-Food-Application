@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:food/screens/btm_bar.dart';
-import 'package:food/screens/user_registration.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthenticationServices {

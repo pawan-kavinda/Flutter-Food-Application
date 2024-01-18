@@ -1,7 +1,6 @@
 //import 'dart:js_util';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:food/inner_screens/burgers_screen.dart';
+
 import 'package:food/inner_screens/favourite.dart';
 
 class FavouriteScreen extends StatefulWidget {
@@ -52,13 +51,11 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                 color: Color.fromARGB(255, 1, 27, 7),
                                 fontSize: 20),
                           ),
-
                           Image.network(
                             image[index],
                             width: 80,
                             height: 80,
                           ),
-                          //Text(price[index].toString())
                         ],
                       ),
                     ),

@@ -1,18 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food/consts/theme_data.dart';
-import 'package:food/inner_screens/burgers_screen.dart';
-import 'package:food/inner_screens/cartitems.dart';
 import 'package:food/inner_screens/feeds_screen.dart';
 import 'package:food/inner_screens/on_sale_screen.dart';
 import 'package:food/provider/dark_theme_provider.dart';
-import 'package:food/screens/admin_btm_bar.dart';
 import 'package:food/screens/btm_bar.dart';
-import 'package:food/screens/categories.dart';
 import 'package:food/screens/home_screen.dart';
 import 'package:food/screens/login.dart';
-import 'package:food/screens/user_registration.dart';
-import 'package:food/services/dark_theme_pref.dart';
+import 'package:food/services/widgets/all.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -57,7 +51,7 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: Styles.themeData(themeProvider.getDarkTheme, context),
-          home: BottomBarScreen(),
+          home: Login(),
           routes: {
             OnSaleScreen.routeName: (ctx) => const OnSaleScreen(),
             FeedScreen.routeName: (ctx) => const FeedScreen(),

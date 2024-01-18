@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,20 +6,22 @@ import 'package:food/inner_screens/cartitems.dart';
 import 'package:food/inner_screens/favourite.dart';
 import 'package:food/services/widgets/price_widget.dart';
 
-class FeedsWidget extends StatefulWidget {
-  const FeedsWidget({super.key});
+class All extends StatefulWidget {
+  const All({super.key});
 
   @override
-  State<FeedsWidget> createState() => _FeedsWidgetState();
+  State<All> createState() => _AllState();
 }
 
-class _FeedsWidgetState extends State<FeedsWidget> {
-  final _foodstream =
-      FirebaseFirestore.instance.collection('foods').snapshots();
-  //for getting only integer inputs for qty
+class _AllState extends State<All> {
+  final _foodstream = FirebaseFirestore.instance.collection('foods');
   final _quantityTextController = TextEditingController();
+  final TextEditingController _searchTextController = TextEditingController();
+  final FocusNode _searchTextFocusNode = FocusNode();
   cartitems cartItems = cartitems();
   favourite favouriteItems = favourite();
+  String _searchText = '';
+
   @override
   void initState() {
     _quantityTextController.text = '1';
@@ -30,14 +31,42 @@ class _FeedsWidgetState extends State<FeedsWidget> {
   @override
   void dispose() {
     _quantityTextController.dispose();
+    _searchTextController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        leading: Icon(Icons.menu),
+        title: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: _searchTextController,
+                onChanged: (value) {
+                  setState(() {
+                    _searchText = value;
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: "Search by Category",
+                  prefixIcon: Icon(Icons.search),
+                ),
+              ),
+            ),
+            Icon(Icons.shopping_cart)
+          ],
+        ),
+      ),
       body: StreamBuilder(
-        stream: _foodstream,
+        stream: _searchText.isEmpty
+            ? _foodstream.snapshots()
+            : _foodstream
+                .where('category', isEqualTo: _searchText.toLowerCase())
+                .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Text('error');
@@ -87,7 +116,7 @@ class _FeedsWidgetState extends State<FeedsWidget> {
                           children: [
                             Text(
                               title,
-                              style: TextStyle(fontSize: 13),
+                              style: TextStyle(fontSize: 14),
                             ),
                             GestureDetector(
                                 onTap: () {

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:food/services/widgets/heart_btn.dart';
@@ -13,6 +14,8 @@ class OnSaleWidget extends StatefulWidget {
 }
 
 class _OnSaleWidgetState extends State<OnSaleWidget> {
+  final _feedstream =
+      FirebaseFirestore.instance.collection('foods').snapshots();
   @override
   Widget build(BuildContext context) {
     return Padding(
